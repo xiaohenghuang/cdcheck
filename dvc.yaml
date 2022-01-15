@@ -1,0 +1,26 @@
+stages:
+  prepare:
+    cmd: python src/prepare.py
+    deps:
+    - labeled_data/
+    - src/prepare.py
+    outs:
+    - autosplit_train.txt
+    - autosplit_val.txt
+  train:
+    cmd: python yolov5/train.py --img 640 --rect --batch 1 --epochs 1 --data ./data.yaml --weights yolov5s.pt --name test --exist-ok
+    deps:
+      - ./data.yaml
+      - autosplit_train.txt
+      - autosplit_val.txt
+      - yolov5/train.py
+    outs:
+      - yolov5/runs/train/test/weights/best.pt
+  inference:
+    cmd: python yolov5/detect.py --img 640 --save-txt --exist-ok --source ./test_data --weights yolov5/runs/train/test/weights/best.pt --conf 0.45 --name try
+    deps:
+      - test_data/
+      - yolov5/runs/train/test/weights/best.pt #best_model/best.pt
+      - yolov5/detect.py
+    outs:
+      - yolov5/runs/detect/try/

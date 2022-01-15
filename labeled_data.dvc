@@ -1,0 +1,5 @@
+outs:
+- md5: e5ba4f81a9eb7546c50debaac2e0162c.dir
+  size: 376052902
+  nfiles: 29
+  path: labeled_data

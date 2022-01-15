@@ -1,0 +1,31 @@
+FROM python:3.8.12-slim-buster
+
+
+# RUN . venv/bin/activate \
+#  && pip install --upgrade pip
+
+# RUN pip install --upgrade pip
+
+RUN apt-get update
+
+RUN apt-get install ffmpeg libsm6 libxext6  -y
+
+WORKDIR /app
+
+COPY ./best_model /app/best_model/
+
+COPY ./src /app/src/
+
+COPY ./AppImage /app/AppImage/
+
+COPY ./requirements.txt /app/requirements.txt
+
+RUN python -m venv venv
+
+RUN . venv/bin/activate \
+ && pip install --upgrade pip \
+ && pip3 install -r requirements.txt
+
+# RUN streamlit run app.py
+# CMD [ "streamlit", "run", "src/app.py" ]
+CMD . venv/bin/activate && streamlit run src/app.py

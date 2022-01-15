@@ -1,0 +1,22 @@
+dvc
+matplotlib
+numpy
+opencv-python
+pandas
+Pillow
+scipy
+stqdm
+streamlit
+# torch==1.7.1
+# torchaudio==0.7.2
+# torchvision==0.8.2
+xlrd
+seaborn
+tensorboard
+dvc[gdrive]
+# The following versions are for CUDA10.1
+# https://pytorch.org/get-started/previous-versions/
+torch==1.8.1+cu101
+torchvision==0.9.1+cu101
+torchaudio==0.8.1
+--find-link https://download.pytorch.org/whl/torch_stable.html
