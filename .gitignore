@@ -1,2 +1,4 @@
 /labeled_data
 /test_data
+/autosplit_train.txt
+/autosplit_val.txt

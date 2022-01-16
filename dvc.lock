@@ -1,0 +1,58 @@
+schema: '2.0'
+stages:
+  prepare:
+    cmd: python src/prepare.py
+    deps:
+    - path: labeled_data/
+      md5: e5ba4f81a9eb7546c50debaac2e0162c.dir
+      size: 376052902
+      nfiles: 29
+    - path: src/prepare.py
+      md5: c21d1fe07d9dc480726b71b1c47445ba
+      size: 1604
+    outs:
+    - path: autosplit_train.txt
+      md5: b51b3249f7eb940309165a420e201932
+      size: 660
+    - path: autosplit_val.txt
+      md5: fcffbd9b5fec365af4c057aa3070c8d1
+      size: 88
+  train:
+    cmd: python yolov5/train.py --img 640 --rect --batch 1 --epochs 1 --data ./data.yaml
+      --weights yolov5s.pt --name test --exist-ok
+    deps:
+    - path: ./data.yaml
+      md5: dc13b82d18d8d321cc41cfba6ccffb31
+      size: 136
+    - path: autosplit_train.txt
+      md5: b51b3249f7eb940309165a420e201932
+      size: 660
+    - path: autosplit_val.txt
+      md5: fcffbd9b5fec365af4c057aa3070c8d1
+      size: 88
+    - path: yolov5/train.py
+      md5: dbb8049f732ae4eafa9f3466246522bd
+      size: 34002
+    outs:
+    - path: yolov5/runs/train/test/weights/best.pt
+      md5: d66bf80e2ff828bb8d199500a0cf0223
+      size: 14392671
+  inference:
+    cmd: python yolov5/detect.py --img 640 --save-txt --exist-ok --source ./test_data
+      --weights yolov5/runs/train/test/weights/best.pt --conf 0.45 --name try
+    deps:
+    - path: test_data/
+      md5: 54fdc1a886522e815b76958e21657c18.dir
+      size: 61603840
+      nfiles: 3
+    - path: yolov5/detect.py
+      md5: 289415d25269f4102b0e2756bda705e1
+      size: 13748
+    - path: yolov5/runs/train/test/weights/best.pt
+      md5: d66bf80e2ff828bb8d199500a0cf0223
+      size: 14392671
+    outs:
+    - path: yolov5/runs/detect/try/
+      md5: d3503fcf4ffd8a41a6441e143f94d312.dir
+      size: 40340735
+      nfiles: 3
