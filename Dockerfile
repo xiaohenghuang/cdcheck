@@ -1,5 +1,6 @@
 FROM python:3.8.12-slim-buster
 
+EXPOSE 8501
 
 # RUN . venv/bin/activate \
 #  && pip install --upgrade pip
@@ -28,4 +29,4 @@ RUN . venv/bin/activate \
 
 # RUN streamlit run app.py
 # CMD [ "streamlit", "run", "src/app.py" ]
-CMD . venv/bin/activate && streamlit run src/app.py
+CMD . venv/bin/activate && streamlit run --server.port $PORT src/app.py
