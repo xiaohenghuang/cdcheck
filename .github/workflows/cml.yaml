@@ -46,11 +46,11 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: best.pt
-          path: downloads
+          path: best_model
 
       - name: Display structure of downloaded files
         run: ls -R
-        working-directory: downloads
+        working-directory: best_model
 
       - uses: actions/checkout@v2
       - name: Login to Heroku Container registry
