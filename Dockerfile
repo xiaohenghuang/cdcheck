@@ -13,7 +13,8 @@ RUN apt-get install ffmpeg libsm6 libxext6  -y
 
 WORKDIR /app
 
-COPY ./best_model /app/best_model/
+COPY ./best_model downloads/
+#/app/best_model/
 
 COPY ./src /app/src/
 
