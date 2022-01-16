@@ -38,6 +38,11 @@ jobs:
         with:
           name: best.pt
           path: yolov5/runs/train/test/weights
+
+  deploy:
+    needs: run
+    runs-on: ubuntu-latest
+    steps:
       - uses: actions/download-artifact@v2
         with:
           name: best.pt
@@ -46,10 +51,7 @@ jobs:
       - name: Display structure of downloaded files
         run: ls -R
         working-directory: downloads
-  deploy:
-    needs: run
-    runs-on: ubuntu-latest
-    steps:
+        
       - uses: actions/checkout@v1
       - name: Login to Heroku Container registry
         env:
