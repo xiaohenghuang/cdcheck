@@ -26,5 +26,5 @@ def autosplit(path='../datasets/coco128/images', weights=(0.7, 0.3, 0.0), annota
             with open(path.parent / txt[i], 'a') as f:
                 f.write('./' + img.relative_to(path.parent).as_posix() + '\n')  # add image to txt file
 
-autosplit(path='./labeled_data', weights=(0.9, 0.1, 0.0), annotated_only=False)
+autosplit(path='./labeled_data', weights=(0.85, 0.15, 0.0), annotated_only=False)
 None
