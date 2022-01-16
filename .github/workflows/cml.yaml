@@ -51,8 +51,8 @@ jobs:
       - name: Display structure of downloaded files
         run: ls -R
         working-directory: downloads
-        
-      - uses: actions/checkout@v1
+
+      - uses: actions/checkout@v2
       - name: Login to Heroku Container registry
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
