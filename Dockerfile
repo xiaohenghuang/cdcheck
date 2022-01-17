@@ -13,14 +13,14 @@ RUN apt-get install ffmpeg libsm6 libxext6  -y
 
 WORKDIR /app
 
-# COPY best_model/best.pt /app/best_model/best.pt
+COPY best_model/best.pt /app/best_model/best.pt
 
-# COPY ./src /app/src/
+COPY ./src /app/src/
 
-# COPY ./AppImage /app/AppImage/
+COPY ./AppImage /app/AppImage/
 
-# COPY ./requirements.txt /app/requirements.txt
-COPY . .
+COPY ./requirements.txt /app/requirements.txt
+# COPY . .
 
 RUN python -m venv venv
 
