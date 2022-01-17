@@ -46,7 +46,7 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: latest_model
-          path: best_model/best.pt
+          path: best_model
 
       - name: Display structure of downloaded files
         run: ls -R
@@ -55,7 +55,7 @@ jobs:
       - name: Login to dockerhub
         run: docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
       - name: Build Docker image
-        run: docker build -f ./Dockerfile -t userofdockerhub/githubpush .
+        run: docker build -f Dockerfile -t userofdockerhub/githubpush .
       - name: Push Docker image to DockerHub
         run: docker push userofdockerhub/githubpush:latest
 
