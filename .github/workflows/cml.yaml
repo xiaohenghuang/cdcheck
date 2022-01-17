@@ -46,7 +46,7 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: latest_model
-          # path: best_model
+          path: best_model/best.pt
 
       - name: Display structure of downloaded files
         run: ls -R
