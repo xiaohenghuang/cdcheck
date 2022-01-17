@@ -2,8 +2,6 @@ FROM python:3.8.12-slim-buster
 
 EXPOSE 8501
 
-RUN echo $(ls -l)
-
 # RUN . venv/bin/activate \
 #  && pip install --upgrade pip
 
@@ -15,14 +13,13 @@ RUN apt-get install ffmpeg libsm6 libxext6  -y
 
 WORKDIR /app
 
-RUN cp ./best_model/best.pt /app/best_model/best.pt
+COPY ./best_model/best.pt /app/best_model/best.pt
 
 COPY ./src /app/src/
 
 COPY ./AppImage /app/AppImage/
 
 COPY ./requirements.txt /app/requirements.txt
-# COPY . .
 
 RUN python -m venv venv
 
