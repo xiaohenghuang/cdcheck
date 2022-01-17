@@ -2,6 +2,8 @@ FROM python:3.8.12-slim-buster
 
 EXPOSE 8501
 
+RUN echo $(ls -l)
+
 # RUN . venv/bin/activate \
 #  && pip install --upgrade pip
 
