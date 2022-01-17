@@ -53,24 +53,24 @@ jobs:
         run: ls -R
         # working-directory: best_model
 
-      - name: Login to dockerhub
-        run: docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-      - name: Build Docker image
-        run: docker build -f Dockerfile -t userofdockerhub/githubpush .
-      - name: Push Docker image to DockerHub
-        run: docker push userofdockerhub/githubpush:latest
+#      - name: Login to dockerhub
+#        run: docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+#      - name: Build Docker image
+#        run: docker build -f Dockerfile -t userofdockerhub/githubpush .
+#      - name: Push Docker image to DockerHub
+#        run: docker push userofdockerhub/githubpush:latest
 
 #      - uses: actions/checkout@v2
-#      - name: Login to Heroku Container registry
-#        env:
-#          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-#        run: heroku container:login
-#      - name: Build and push
-#        env:
-#          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-#        run: heroku container:push -a blooming-hamlet-02973 web
-#      - name: Release
-#        env:
-#          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-#        run: heroku container:release -a blooming-hamlet-02973 web
+      - name: Login to Heroku Container registry
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: heroku container:login
+      - name: Build and push
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: heroku container:push -a blooming-hamlet-02973 web
+      - name: Release
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: heroku container:release -a blooming-hamlet-02973 web
 
